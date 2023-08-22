@@ -1,21 +1,30 @@
 const express = require('express');
-const router = express.Router(); // Utilisez la fonction Router ici, en l'appelant comme une fonction
-const auth = require('../middleware/auth'); // Assurez-vous que le chemin d'accès vers le middleware est correct
-const bookCtrl = require('../controllers/books');
+const router = express.Router();
+const bookController = require('../controllers/books');
+const auth = require('../middleware/auth');
+const multer = require('../middleware/multer-config');
+
+
+
+// Route pour créer un nouveau livre (Authentification requise)
+router.post('/', auth, multer, bookController.createBook);
 
 // Route pour obtenir la liste de tous les livres
-router.get('/', auth, bookCtrl.getAllBooks);
+router.get('/', bookController.getAllBooks);
 
-// Route pour créer un nouveau livre
-router.post('/', auth, bookCtrl.createBook);
+// Route pour obtenir les 3 livres ayant la meilleure note moyenne
+router.get('/bestrating', bookController.getBestRatedBooks);
 
-// Route pour obtenir un livre spécifique par son ID
-router.get('/:id', auth, bookCtrl.getOneBook);
+// Route pour mettre à jour un livre spécifique (Authentification requise)
+router.put('/:id', auth, multer, bookController.updateBook);
 
-// Route pour modifier un livre par son ID
-router.put('/:id', auth, bookCtrl.modifyBook);
+// Route pour obtenir les détails d'un livre spécifique
+router.get('/:id', bookController.getBookById);
 
-// Route pour supprimer un livre par son ID
-router.delete('/:id', auth, bookCtrl.deleteBook);
+// Route pour supprimer un livre spécifique (Authentification requise)
+router.delete('/:id', auth, bookController.deleteBook);
+
+// Route pour noter un livre spécifique (Authentification requise)
+router.post('/:id/rating', auth, bookController.rateBook);
 
 module.exports = router;

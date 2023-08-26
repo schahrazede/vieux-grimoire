@@ -6,7 +6,7 @@ const cors = require('cors');
 const app = express(); // Créez l'objet app ici
 
 // Connexion à la base de données
-mongoose.connect(`mongodb+srv://schahrazede:Yasmine2021@cluster0.lk0ervz.mongodb.net/?retryWrites=true&w=majority`)
+mongoose.connect(process.env.URL_Mongodb)
   .then(() => console.log('connexion à mongoDB réussie'))
   .catch(error => console.error('Erreur de connexion à MongoDB:', error));
 
@@ -26,7 +26,7 @@ app.use('/images', express.static('images'));
 const userRoute = require('./routes/userRoutes');
 const bookroute = require('./routes/book');
 
-app.use('/api/book', bookroute);
+app.use('/api/books', bookroute);
 app.use('/api/auth', userRoute);
 
 module.exports = app;

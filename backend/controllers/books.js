@@ -22,7 +22,7 @@ exports.createBook = (req, res, next) => {
 exports.updateBook = (req, res, next) => {
     const bookObject = req.file ? {
         ...JSON.parse(req.body.book),
-        imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.name}`
+        imageUrl: `${req.protocol}://${req.get("host")}/${req.file.name}`
     } : { ...req.body };
     delete bookObject._userId;
     Book.findOne({ _id: req.params.id })

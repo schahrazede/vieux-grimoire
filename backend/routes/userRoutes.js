@@ -1,8 +1,7 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const userController = require('../controllers/UserController');
-
-router.post('/signup', userController.signup);
-router.post('/login', userController.login);
-
+const userController = require("../controllers/UserController");
+const emailRegex = require("../middleware/emailRegex");
+router.post("/signup", emailRegex, userController.signup);
+router.post("/login", userController.login);
 module.exports = router;

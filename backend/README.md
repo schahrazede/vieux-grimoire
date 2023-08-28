@@ -1,4 +1,4 @@
-Description
+ Description
 
 Le site "Mon Vieux Grimoire" offre aux lecteurs la possibilité de créer des livres, de les noter et de consulter les livres existants ainsi que leurs notes.
 
@@ -12,12 +12,16 @@ Le site "Mon Vieux Grimoire" offre aux lecteurs la possibilité de créer des li
 💡 Technologies utilisées
 
 1-	Backend : Node.js, Express, MongoDB.
+
 2-	Authentification : Sécurisée avec token JWT.
+
 3-	Hachage du password: Sécurisée avec bcrypt.
+
 4-	🖼️ Gestion d'images : Utilisation de Multer pour le téléchargement et l'optimisation des images. Et sharp
 
 🔒 Sécurité
 
 •	🔐 Hachage du mot de passe utilisateur.
+
 •	Authentification renforcée sur toutes les routes nécessaires.
 

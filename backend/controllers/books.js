@@ -115,6 +115,7 @@ exports.rateBook = (req, res) => {
             }
             const totalRatings = book.ratings.reduce((acc, curr) => acc + curr.grade, 0);
             book.averageRating = totalRatings / book.ratings.length;
+            book.averageRating = book.averageRating.toFixed(1);
             book.save()
                 .then(() => {
                     res.status(200).json(book);
